@@ -26,7 +26,8 @@ class User implements crud
         $fn = $this->first_name;
         $ln = $this->last_name;
         $city = $this->city_name;
-        $res = mysql_query("INSERT INTO user(first_name,last_name,user_city)VALUES("$fn","$ln","$city")") or die("Error: ".mysql_error);
+        $query = "INSERT INTO user(first_name,last_name,user_city)VALUES('$fn','$ln','$city')";
+        $res = mysql_query($query) or die("Error: ". mysql_error());
         return $res;
 
     }
