@@ -11,7 +11,7 @@ class DBConnector
 
     function __construct()
     {
-        $this->conn =   mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $this->conn = mysql_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     }
 
     public function closeDatabase()
