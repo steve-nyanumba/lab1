@@ -16,8 +16,8 @@ if (isset($_POST['btn-save'])) {
     } else {
         echo "An error occured";
     }
-}
 
+}
 ?>
 
 
@@ -66,20 +66,21 @@ if (isset($_POST['btn-save'])) {
         </tr>
         <?php
         
-        $display = new User;
-        $res = $display->readAll();
-        if(mysqli_num_rows($res)>0){
-            while ($row = mysqli_fetch_assoc($res)){
-                $first_name = $row['first_name'];
-                $last_name = $row['last_name'];
-                $city_name = $row['user_city'];
-
-                $entries = "<tr><td>".$first_name."</td><td>".$last_name."</td><td>".$city_name."</td></tr>";
-            }
-            echo $entries;
-        }
         
-        ?>
+        $res2 = User::readAll();
+        if(mysqli_num_rows ($res2) > 0) {
+            while($row = mysqli_fetch_assoc($res2)){
+                $fn = $row['first_name'];
+                $ln = $row['last_name'];
+                $cn = $row['user_city'];
+
+                $entries = "<tr><td>$fn</td><td>$ln</td><td>$cn</td></tr>";
+                echo $entries;
+            }
+            
+        }
+    
+    ?>
         
     
     </table>
