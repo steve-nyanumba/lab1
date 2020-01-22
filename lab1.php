@@ -1,7 +1,7 @@
 <?php
 include_once "DBConnector.php";
 include_once "user.php";
-$conn = new DBConnector;
+
 
 if (isset($_POST['btn-save'])) {
     $first_name = $_POST['first_name'];
@@ -57,6 +57,32 @@ if (isset($_POST['btn-save'])) {
             </tr>
         </table>
     </form>
+
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>last Name</th>
+            <th>City</th>
+        </tr>
+        <?php
+        
+        $display = new User;
+        $res = $display->readAll();
+        if(mysqli_num_rows($res)>0){
+            while ($row = mysqli_fetch_assoc($res)){
+                $first_name = $row['first_name'];
+                $last_name = $row['last_name'];
+                $city_name = $row['user_city'];
+
+                $entries = "<tr><td>".$first_name."</td><td>".$last_name."</td><td>".$city_name."</td></tr>";
+            }
+            echo $entries;
+        }
+        
+        ?>
+        
+    
+    </table>
 </body>
 
 </html>

@@ -23,18 +23,22 @@ class User implements crud
     }
 
     public function save(){
+        $conn = new DBConnector;
         $fn = $this->first_name;
         $ln = $this->last_name;
         $city = $this->city_name;
         $query = "INSERT INTO user(first_name,last_name,user_city)VALUES('$fn','$ln','$city')";
-        $res = mysql_query($query) or die("Error: ". mysql_error());
+        $res = mysqli_query($conn->__construct(), $query) or die("Error: ". mysqli_errno($conn->__construct()));
         return $res;
 
     }
 
     public function readAll(){
         
-        return null;
+        $conn = new DBConnector;
+        $query = "SELECT * FROM user";
+        $res = mysqli_query($conn->__construct(), $query) or die(mysqli_errno($conn->__construct()));
+        return $res;
     }
 
     public function readUnique(){
