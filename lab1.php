@@ -83,6 +83,7 @@ include_once "user.php";
             <th>First Name</th>
             <th>last Name</th>
             <th>City</th>
+            <th>Username</th>
         </tr>
         <?php
         
@@ -93,6 +94,7 @@ include_once "user.php";
                 $fn = $row['first_name'];
                 $ln = $row['last_name'];
                 $cn = $row['user_city'];
+                $cn = $row['username'];
 
                 $entries = "<tr><td>$fn</td><td>$ln</td><td>$cn</td></tr>";
                 echo $entries;
