@@ -32,8 +32,10 @@ class User implements crud
         $ln = $this->last_name;
         $city = $this->city_name;
         $username = $this->username;
+        $this->hashPassword();
+        $password = $this->password;
 
-        $query = "INSERT INTO user(first_name,last_name,user_city)VALUES('$fn','$ln','$city')";
+        $query = "INSERT INTO user(first_name,last_name,user_city,username,password) VALUES('$fn','$ln','$city','$username','$password')";
         $res = mysqli_query($conn->__construct(), $query) or die("Error: ". mysqli_errno($conn->__construct()));
         return $res;
 
@@ -76,8 +78,10 @@ class User implements crud
         $fn = $this->first_name;
         $ln = $this->last_name;
         $city = $this->city_name;
+        $username = $this->username;
+        $password = $this->password;
 
-        if($fn == null || $ln == "" || $city == "") {
+        if($fn == null || $ln == "" || $city == "" || $username == "" || $password == "") {
             return false;
         }
         return true;
@@ -113,6 +117,7 @@ class User implements crud
     public function isPasswordCorrect(){
         $conn = new DBConnector;
         $found = false;
+        $query = 'SELECT * FROM user';
         $res = mysqli_query($conn->__construct(), $query) or die('Error:'. mysqli_errno($conn->__construct()));
 
         while($row = mysqli_fetch_assoc($res)){
@@ -135,7 +140,7 @@ class User implements crud
     }
     public function logout(){
         session_start();
-        unset($_SESSION['username'])
+        unset($_SESSION['username']);
         session_destroy();
         header("Location:lab1.php");
     }
